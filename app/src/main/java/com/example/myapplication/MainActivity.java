@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity {
 
     public enum ViewLoaded {
+
         FRAGMENT_A(FragmentA.class),
         FRAGMENT_B(FragmentA.class);
 
