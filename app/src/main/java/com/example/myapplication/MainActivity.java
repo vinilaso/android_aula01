@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText _heigthEditText;
     private EditText _weightEditText;
+    private EditText _nameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,24 +39,46 @@ public class MainActivity extends AppCompatActivity {
     {
         _weightEditText = findViewById(R.id.input_weight);
         _heigthEditText = findViewById(R.id.input_height);
+        _nameEditText = findViewById(R.id.input_name);
 
         findViewById(R.id.btn_calcular).setOnClickListener(button ->
         {
-            Toast.makeText(this, "IMC: " + getIMCValue(), Toast.LENGTH_LONG).show();
+            gotoResultsActivity();
         });
     }
 
     private double getIMCValue()
     {
-        String heightStr = _heigthEditText.getText().toString();
-        String weightStr = _weightEditText.getText().toString();
+        double height = getValueOf(_heigthEditText);
+        double weight = getValueOf(_weightEditText);
 
-        if (heightStr.isEmpty() || weightStr.isEmpty())
+        if (height <= 0 || weight <= 0)
             return 0;
 
-        double height = Double.parseDouble(heightStr);
-        double weight = Double.parseDouble(weightStr);
-
         return weight / (height * height);
+    }
+
+    private double getValueOf(EditText input)
+    {
+        String str = input.getText().toString();
+
+        if (str.isEmpty())
+            return 0;
+
+        return Double.parseDouble(str);
+    }
+
+    private void gotoResultsActivity()
+    {
+        Bundle bundle = new Bundle();
+        bundle.putString("user-name", _nameEditText.getText().toString());
+        bundle.putDouble("height", getValueOf(_heigthEditText));
+        bundle.putDouble("weight", getValueOf(_weightEditText));
+        bundle.putDouble("imc", getIMCValue());
+
+        Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 }
