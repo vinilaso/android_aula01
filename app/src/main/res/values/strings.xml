@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="hello">Hi</string>
+    <string name="peso_str">Weight (kg)</string>
+    <string name="altura_str">Height (m)</string>
+    <string name="nome_str">Name</string>
+    <string name="mostrar_resultados_str">Show results</string>
 </resources>
