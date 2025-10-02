@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 public class ResultsActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_results);
@@ -23,5 +25,26 @@ public class ResultsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        loadFragments();
+    }
+
+    private void loadFragments()
+    {
+        Fragment dataFragmentInstance = new DataFragment();
+        dataFragmentInstance.setArguments(getIntent().getExtras());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.data_fragment_container, dataFragmentInstance)
+                .commit();
+
+        Fragment suggestionsFragmentInstance = new SuggestionsFragment();
+        suggestionsFragmentInstance.setArguments(getIntent().getExtras());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.suggestions_fragment_container, suggestionsFragmentInstance)
+                .commit();
     }
 }

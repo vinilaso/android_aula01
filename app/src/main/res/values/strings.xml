@@ -5,4 +5,10 @@
     <string name="altura_str">Height (m)</string>
     <string name="nome_str">Name</string>
     <string name="mostrar_resultados_str">Show results</string>
+    <string name="expected_imc">Your IMC is between the expected values!</string>
+    <string name="low_imc">Your IMC is lower than expected!</string>
+    <string name="high_imc">Your IMC is higher than expected!</string>
+    <string name="expected_suggestion">Keep it up!</string>
+    <string name="high_suggestion">You should lose %d kg</string>
+    <string name="low_suggestion">You should gain %d kg</string>
 </resources>
