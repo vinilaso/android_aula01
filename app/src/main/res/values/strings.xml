@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyLauncher</string>
+    <string name="app_not_available">Não foi possivel abrir o aplicativo</string>
+</resources>
